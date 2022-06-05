@@ -1,0 +1,304 @@
+{
+    "key": "group_61e3073ca8546",
+    "title": "Event Details",
+    "fields": [
+        {
+            "key": "field_61e3073f7c43c",
+            "label": "date",
+            "name": "date",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "j F, Y",
+            "return_format": "jS F Y",
+            "first_day": 1
+        },
+        {
+            "key": "field_61e3081acb9c1",
+            "label": "time",
+            "name": "time",
+            "type": "text",
+            "instructions": "example format: 11am or 2:30pm",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61e307847c43d",
+            "label": "cost",
+            "name": "cost",
+            "type": "number",
+            "instructions": "in pounds, if multiple price then enter the price for the 'main event'",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_61e3079e7c43e",
+            "label": "location",
+            "name": "location",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61e3080fcb9c0",
+            "label": "link to book",
+            "name": "link",
+            "type": "text",
+            "instructions": "If no link, just leave this blank",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61e30830cb9c2",
+            "label": "category",
+            "name": "category",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "club_road_race": "Club Road Race",
+                "club_fell_race": "Club Fell Race",
+                "club_trail_race": "Club Trail Race",
+                "cross_country": "Cross Country",
+                "local_race": "Local Race",
+                "team_relay": "Team Relay",
+                "summer_run": "Summer Run",
+                "social_event": "Social Event"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_61f29971a801a",
+            "label": "disances",
+            "name": "disances",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_61f2998aa801b",
+                    "label": "name",
+                    "name": "name",
+                    "type": "text",
+                    "instructions": "eg 'junior' or 'womens'",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61f299a1a801c",
+                    "label": "distance",
+                    "name": "distance",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_61f29af0a801d",
+                    "label": "cost",
+                    "name": "cost",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                }
+            ]
+        },
+        {
+            "key": "field_61f2c20aa95c6",
+            "label": "Route Information",
+            "name": "the_route",
+            "type": "wysiwyg",
+            "instructions": "Any information you have about the route would be useful. Are there water stations? Is it a flat course? Is any special equipment such as trial shoes or headlamp needed?",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_61f2c230a95c7",
+            "label": "Logistics Information",
+            "name": "logistics_info",
+            "type": "wysiwyg",
+            "instructions": "Any information you have about logistics would be useful. How to get to the venue? Is there parking nearby? Where is bib collection? Does ARR have a usual meeting place? Where is the start line? etc.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_61f2c32fa95c8",
+            "label": "What's Included",
+            "name": "included",
+            "type": "select",
+            "instructions": "Select all that apply, if you are unsure if it is included or not, do not select it",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Bespoke finishers medal": "Bespoke finishers medal",
+                "Exclusive finishers t-shirt": "Exclusive finishers t-shirt",
+                "Finishers goodie bag": "Finishers goodie bag",
+                "Free Injury Protection": "Free Injury Protection",
+                "Oncourse music entertainment zones to keep you motivated": "Oncourse music entertainment zones to keep you motivated",
+                "Incredible crowd support": "Incredible crowd support",
+                "Pre-race training advice and motivation": "Pre-race training advice and motivation",
+                "Oncourse hydration stations": "Oncourse hydration stations",
+                "Post-event finisher village with activations and giveaways": "Post-event finisher village with activations and giveaways",
+                "Chip-timed results": "Chip-timed results",
+                "Closed roads": "Closed roads",
+                "Marked and marshalled route": "Marked and marshalled route",
+                "Full medical support": "Full medical support"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 1,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "events"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1646648573
+}

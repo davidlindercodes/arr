@@ -1,0 +1,22 @@
+/* Theme Colours */
+
+:root {
+--color-blue: #028CDE; 
+--color-darkblue: #29235C;
+--color-midnightblue: #1D1845;
+--color-lightblue: #CCE2F0;
+--color-iceblue: #DEECF3;
+--color-quoteblue: #88ADC3;
+--color-lightgrey: #AAAAAA;
+--color-green: #01C88E;
+--color-red: #FF0000;
+--color-orange: #FF9A0A;
+}
+
+
+/* Tailwind Dependancies */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
