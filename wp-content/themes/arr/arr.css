@@ -1128,3 +1128,77 @@ video {
     line-height: 1.75rem;
   }
 }
+
+
+/*----- Custom CSS For Filters ----*/
+.filter-input {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+.filter-button{
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 14px 24px;
+  border: none;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  background: #045aa8;
+  color: #fff;
+}
+.form-inline {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  /* display: flex; */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: left;
+}
+@media (min-width: 576px){
+  .form-inline .form-group {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      margin-bottom: 0;
+  }
+}
+@media (min-width: 576px){
+  .ml-sm-3, .mx-sm-3 {
+      margin-left: 1rem!important;
+  }
+}
+@media (min-width: 576px){
+  .mr-sm-3, .mx-sm-3 {
+      margin-right: 1rem!important;
+  }
+}
+.wpposts-wrapper .pagination{
+  width: 100% !important;
+}

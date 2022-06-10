@@ -31,8 +31,16 @@ add_action('wp_enqueue_scripts', 'queue_styles');
 function queue_scripts () {
     wp_register_script('splide', get_template_directory_uri() . '/src/js/splide.min.js', array(), false , true);
     wp_enqueue_script('splide');
-    wp_register_script('custom', get_stylesheet_directory_uri() . '/src/js/custom/arr.js', array(), "1.4" , true);
+    wp_register_script('custom', get_stylesheet_directory_uri() . '/src/js/custom/arr.js', array('jquery'), "1.4" , true);
 	wp_enqueue_script('custom');
+
+    $localized_obj = array(
+        'ajax_url'    => admin_url( 'admin-ajax.php' ),
+        // 'loader'      => MCFSR_URL."/assets/images/loader.gif",
+        // 'wpiuf_nonce' => wp_create_nonce( 'mcfsr-users-table-nonce' ),
+    );
+    
+    wp_localize_script( 'custom', 'mcf_vars', $localized_obj );
 }
 add_action('wp_enqueue_scripts', 'queue_scripts');
 
@@ -141,3 +149,286 @@ add_action( 'init', 'arr_events' );
 // Add Featured Image Support
 add_theme_support( 'post-thumbnails' );
 
+
+
+// Ajax Filters functions
+
+/**
+ * Print array
+*/
+function mcf_pa($arr){
+    echo '<pre>';
+    print_r($arr);
+    echo '</pre>';
+}
+
+/**
+ * WP Ajax Hook for filters
+*/
+add_action( 'wp_ajax_mcf_filters_form_action', 'mcf_filters_form_action' );
+add_action( 'wp_ajax_nopriv_mcf_filters_form_action', 'mcf_filters_form_action' );
+function mcf_filters_form_action(){
+
+    $mcf_post_type  = isset($_POST['mcf_post_type']) ? $_POST['mcf_post_type'] : '';
+    
+    $response_meta = array();
+    $date_query = array();
+    $event_type_query = array();
+
+    if ($mcf_post_type == 'events') {
+        $content = mcf_events_filter_callback();
+    }else{
+         $content = mcf_posts_filter_callback();        
+    }
+
+    if ($content) {        
+        $response_meta = array('status' => 'success', 'message' => __('Filters Added','wpacf-filters'), 'html' => $content );
+    } else {
+        $response_meta = array('status' => 'error', 'message' => __('Erro! Please Contact To Admin','wpacf-filters'), 'html' => $content );
+    }
+
+    wp_send_json($response_meta);
+}
+
+/**
+ * Events filter ajax callback
+*/
+function mcf_events_filter_callback(){
+
+    $start_date  = isset($_POST['start_date']) ? $_POST['start_date'] : '';
+    $end_date    = isset($_POST['end_date']) ? $_POST['end_date'] : '';
+    $event_type  = isset($_POST['event_type']) ? $_POST['event_type'] : '';
+    $paged       = isset($_POST['mcf_current_page']) ? $_POST['mcf_current_page'] : '';
+    $date_query = array();
+    $event_type_query = array();
+
+    $args = array(
+        'post_type'      => 'events',
+        'post_status'    => 'publish',
+        'posts_per_page' => 15,
+        'paged'          => $paged,
+        'meta_key'       => 'date',
+        'orderby'        => 'meta_value_num',
+        'order'          => 'ASC',      
+    );
+
+    if (!empty($start_date) && !empty($end_date) && !empty($event_type)) {
+        $args['meta_query'] = array(
+            'relation' => 'OR',
+            array(
+                array(
+                  'key' => 'date',
+                  'compare' => '<=',
+                  'value'   => $end_date,
+                  'type' => 'DATE'
+                ),
+                array(
+                  'key' => 'date',
+                  'compare' => '>=',
+                  'value'   => $start_date,
+                  'type' => 'DATE'
+                ),
+            ),
+            array(
+                'key'   => 'category',
+                'value' => $event_type,
+            )
+        );
+    }else if(!empty($start_date) && !empty($end_date)){
+        $args['meta_query'] = array(
+            array(
+                array(
+                  'key' => 'date',
+                  'compare' => '<=',
+                  'value'   => $end_date,
+                  'type' => 'DATE'
+                ),
+                array(
+                  'key' => 'date',
+                  'compare' => '>=',
+                  'value'   => $start_date,
+                  'type' => 'DATE'
+                ),
+            )
+        );
+    }else if(!empty($event_type)){
+        $args['meta_query'] = array(
+            array(
+                'key'   => 'category',
+                'value' => $event_type,
+            )
+        );
+    }
+
+    $query         = new WP_Query( $args );
+    $paginate_args = mcf_pagination_args($query, $paged);
+
+    ob_start();
+    if ( $query->have_posts() ) {   
+        while( $query->have_posts() ){
+            $query->the_post();
+            if (strtotime(get_field('date')) > strtotime(date('jS F Y'))){
+                get_template_part('templates/event-template');                
+            }
+        }
+        ?>
+        <div class="pagination container">
+            <?php echo paginate_links( $paginate_args ); ?>
+        </div>
+        <?php
+        wp_reset_postdata();
+    }else{
+        ?>
+        <div class="wpacf-filters-content-error" style="margin: 0 auto;">           
+            <h3><?php echo _e('Content Not Found','wpacf-filters'); ?></h3>
+        </div>
+        <?php
+    }
+    $content = ob_get_clean();
+
+    return $content;
+}
+
+/**
+ * Posts filter ajax callback
+*/
+function mcf_posts_filter_callback(){
+
+    $start_date  = isset($_POST['start_date']) ? $_POST['start_date'] : '';
+    $end_date    = isset($_POST['end_date']) ? $_POST['end_date'] : '';
+    $post_cat  = isset($_POST['post_cat']) ? $_POST['post_cat'] : '';
+    $paged       = isset($_POST['mcf_current_page']) ? $_POST['mcf_current_page'] : '';
+
+    $args = array(  
+        'post_type'      => 'post',
+        'posts_per_page' => 9, 
+        'paged'          => $paged,
+        'orderby'        => 'date', 
+        'order'          => 'ASC',
+    );
+
+    if (!empty($start_date) && !empty($end_date)) {            
+        $args['date_query'] = array(
+            'after' => sanitize_text_field( $start_date ),
+            'before' => sanitize_text_field( $end_date ),
+            'inclusive' => true,
+            'column'    => 'post_date'
+        );
+    }
+
+    if (!empty($post_cat)) {
+        $args['cat'] = $post_cat;
+    }
+
+    $query         = new WP_Query( $args );
+    $paginate_args = mcf_posts_pagination_args($query, $paged);
+    
+    ob_start();
+    if ( $query->have_posts() ) {   
+        while( $query->have_posts() ){
+            $query->the_post();
+            get_template_part('templates/blog-template');
+        }
+        ?>
+        <div class="pagination container">
+            <?php echo paginate_links( $paginate_args ); ?>
+        </div>
+        <?php
+        wp_reset_postdata();
+    }else{
+        ?>
+        <div class="wpacf-filters-content-error" style="margin: 0 auto;">           
+            <h3><?php echo _e('Content Not Found','wpacf-filters'); ?></h3>
+        </div>
+        <?php
+    }
+    $content = ob_get_clean();
+
+    return $content;    
+}
+
+/**
+ * Events Query args callback
+*/
+function mcf_events_query_callback(){
+
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
+    $query = new WP_Query( array(  
+        'posts_per_page' => 15, 
+        'paged'          => $paged,
+        'post_type'      => 'events',
+        'post_status'    => 'publish',
+        'meta_key'       => 'date',
+        'orderby'        => 'meta_value_num',
+        'order'          => 'ASC',
+    ));
+
+    return $query;
+}
+
+/**
+ * Events pagination args callback
+*/
+function mcf_pagination_args($query, $paged){
+
+    $args = array(
+        'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+        'total'        => $query->max_num_pages,
+        'current'      => max( 1, $paged ),
+        'format'       => '?paged=%#%',
+        'show_all'     => false,
+        'type'         => 'plain',
+        'end_size'     => 2,
+        'mid_size'     => 1,
+        'prev_next'    => true,
+        'prev_text'    => sprintf( '<i></i> %1$s', __( 'Previous', 'text-domain' ) ),
+        'next_text'    => sprintf( '%1$s <i></i>', __( 'Next', 'text-domain' ) ),
+        'add_args'     => false,
+        'add_fragment' => '',
+    );
+
+    return $args;
+}
+
+/**
+ * Posts query args callback
+*/
+function mcf_posts_query_callback(){
+
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
+    $query = new WP_Query( array(  
+        'post_type'      => 'post',
+        'posts_per_page' => 9, 
+        'paged'          => $paged,
+        'orderby'        => 'date', 
+        'order'          => 'DESC',
+    ));
+
+    return $query;
+}
+
+/**
+ * Posts pagination args callback
+*/
+function mcf_posts_pagination_args($query, $paged){
+
+    $args = array(
+        'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+        'total'        => $query->max_num_pages,
+        'current'      => max( 1, $paged ),
+        'format'       => '?paged=%#%',
+        'show_all'     => false,
+        'type'         => 'plain',
+        'end_size'     => 2,
+        'mid_size'     => 1,
+        'prev_next'    => true,
+        'prev_text'    => sprintf( '<i></i> %1$s', __( 'Previous', 'text-domain' ) ),
+        'next_text'    => sprintf( '%1$s <i></i>', __( 'Next', 'text-domain' ) ),
+        'add_args'     => false,
+        'add_fragment' => '',
+    );
+
+    return $args;
+}
