@@ -209,7 +209,17 @@ function mcf_events_filter_callback(){
         'paged'          => $paged,
         'meta_key'       => 'date',
         'orderby'        => 'meta_value_num',
-        'order'          => 'ASC',      
+        'order'          => 'ASC',
+        'meta_query'     => array(
+            array(
+                array(
+                  'key' => 'date',
+                  'compare' => '>=',
+                  'value'   => date("Y-m-d"),
+                  'type'    => 'DATE'
+                ),
+            ),
+        )
     );
 
     if (!empty($start_date) && !empty($end_date) && !empty($event_type)) {
@@ -353,7 +363,7 @@ function mcf_posts_filter_callback(){
 function mcf_events_query_callback(){
 
     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-
+    
     $query = new WP_Query( array(  
         'posts_per_page' => 15, 
         'paged'          => $paged,
@@ -362,6 +372,16 @@ function mcf_events_query_callback(){
         'meta_key'       => 'date',
         'orderby'        => 'meta_value_num',
         'order'          => 'ASC',
+        'meta_query'     => array(
+            array(
+                array(
+                  'key' => 'date',
+                  'compare' => '>=',
+                  'value'   => date("Y-m-d"),
+                  'type'    => 'DATE'
+                ),
+            ),
+        )
     ));
 
     return $query;

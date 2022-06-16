@@ -65,9 +65,7 @@ $paged     = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
                 $paginate_args = mcf_pagination_args($query, $paged);
                 if ($query->have_posts()) :
                     while( $query->have_posts() ) : $query->the_post();
-                        if (strtotime(get_field('date')) > strtotime(date('jS F Y'))):
-                            get_template_part('templates/event-template');                
-                        endif;
+                            get_template_part('templates/event-template');                        
                     endwhile;
                     ?>
                     <div class="pagination container">
