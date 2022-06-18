@@ -1202,3 +1202,8 @@ video {
 .wpposts-wrapper .pagination{
   width: 100% !important;
 }
+.blockUI h1{
+  font-size: 15px !important;
+  color: #fff !important;
+  font-weight: 400 !important;
+}

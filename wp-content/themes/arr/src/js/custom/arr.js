@@ -47,7 +47,7 @@ const MCF_FILTERS = {
         jQuery(document).on('submit', '.filter-form-js', function(e){
             e.preventDefault();
 
-            // MCF_FILTERS.blockUI('.ormwc-wrapper', 'start');
+            MCF_FILTERS.blockUI('.ormwc-wrapper', 'start');
             $('.filter-form-js input[name="mcf_current_page"]').val(1);
             var data = jQuery(this).serialize();
 
@@ -57,7 +57,7 @@ const MCF_FILTERS = {
                    jQuery('.wpposts-wrapper').html(resp.html);
                 }
                 
-                // MCF_FILTERS.blockUI('.ormwc-wrapper', 'end');              
+                MCF_FILTERS.blockUI('.ormwc-wrapper', 'end');              
             }, 'json');
 
         });
@@ -87,27 +87,18 @@ const MCF_FILTERS = {
     blockUI: function(selector, type){
         
         if (type == 'start') {
-            jQuery(selector).block({
-                message: '<img src="'+ormwc_frontent_vars.loader+'"/>',
-                css: {
-                    padding:        0, 
-                    margin:         0, 
-                    width:          'auto', 
-                    top:            '7%', 
-                    left:           '35%', 
-                    textAlign:      'center', 
-                    color:          '#000', 
-                    border:         'unset', 
-                    backgroundColor:'#fff', 
-                    cursor:         'wait' 
-                }, 
-                overlayCSS: {
-                    background: "#fff",
-                    opacity: .6,
-                }
-            });
+
+            $.blockUI({ css: {
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff' 
+            }});
         }else{
-            jQuery(selector).unblock();    
+            $.unblockUI()
         }
     },
-}
+} 

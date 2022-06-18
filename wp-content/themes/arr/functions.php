@@ -29,6 +29,10 @@ add_action('wp_enqueue_scripts', 'queue_styles');
 
 // Add Scripts
 function queue_scripts () {
+
+    wp_register_script('blockui', get_stylesheet_directory_uri() . '/src/js/jquery-blockui.js', array('jquery'), "2.70.0" , true);
+    wp_enqueue_script('blockui');
+
     wp_register_script('splide', get_template_directory_uri() . '/src/js/splide.min.js', array(), false , true);
     wp_enqueue_script('splide');
     wp_register_script('custom', get_stylesheet_directory_uri() . '/src/js/custom/arr.js', array('jquery'), "1.4" , true);
@@ -421,9 +425,13 @@ function mcf_posts_query_callback(){
     $query = new WP_Query( array(  
         'post_type'      => 'post',
         'posts_per_page' => 9, 
-        'paged'          => $paged,
-        'orderby'        => 'date', 
-        'order'          => 'DESC',
+        'paged'          => $paged,        
+        'orderby'        => 'date',
+        // 'orderby'   => array(
+        //     'date' =>'DESC',
+        //     'menu_order'=>'ASC',
+        // )
+        'order'          => 'ASC',
     ));
 
     return $query;
