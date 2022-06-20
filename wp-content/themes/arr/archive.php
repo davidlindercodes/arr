@@ -15,6 +15,9 @@ $categories = get_categories( array(
     'orderby' => 'name',
     'order'   => 'ASC'
 ));
+$category_slug   = isset($_GET['category']) ? $_GET['category'] : '';
+
+// mcf_pa($categories);
 
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
@@ -51,7 +54,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
                     <select class="filter-input" name="post_cat">
                         <option value="">All</option>
                         <?php foreach ($categories as $category): ?>                    
-                            <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo $category->name; ?></option>
+                            <option <?php selected($category_slug, $category->slug, true); ?> value="<?php echo esc_attr($category->slug); ?>"><?php echo $category->name; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>

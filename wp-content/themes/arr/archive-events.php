@@ -14,6 +14,7 @@ get_header();
 $event_cat = get_field('category');
 $field     = get_field_object('category');
 $paged     = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$event_type = isset($_GET['event_type']) ? $_GET['event_type'] : '';
 ?>
 
 <section class="mainContent smallerSectionPadding bg-white topfoldDesktop">
@@ -48,7 +49,7 @@ $paged     = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
                     <select class="filter-input" name="event_type">
                         <option value="">All</option>
                         <?php foreach ($field['choices'] as $key => $val): ?>                    
-                            <option value="<?php echo esc_attr($key); ?>"><?php echo $val; ?></option>
+                            <option <?php selected($event_type, $key, true); ?> value="<?php echo esc_attr($key); ?>"><?php echo $val; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>

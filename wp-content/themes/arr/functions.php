@@ -331,7 +331,7 @@ function mcf_posts_filter_callback(){
     }
 
     if (!empty($post_cat)) {
-        $args['cat'] = $post_cat;
+        $args['category_name'] = $post_cat;
     }
 
     $query         = new WP_Query( $args );
@@ -367,8 +367,9 @@ function mcf_posts_filter_callback(){
 function mcf_events_query_callback(){
 
     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $event_type = isset($_GET['event_type']) ? $_GET['event_type'] : '';
     
-    $query = new WP_Query( array(  
+    $args = array(  
         'posts_per_page' => 15, 
         'paged'          => $paged,
         'post_type'      => 'events',
@@ -386,7 +387,27 @@ function mcf_events_query_callback(){
                 ),
             ),
         )
-    ));
+    );
+
+    if (!empty($event_type)) {
+        $args['meta_query'] = array(
+            'relation' => 'AND',
+            array(
+              'key' => 'date',
+              'compare' => '>=',
+              'value'   => date("Y-m-d"),
+              'type'    => 'DATE'
+            ),
+            array(
+                'key'   => 'category',
+                'value' => $event_type,
+            )
+        );
+    }
+
+    // mcf_pa($args);
+    
+    $query = new WP_Query($args);
 
     return $query;
 }
@@ -420,9 +441,10 @@ function mcf_pagination_args($query, $paged){
 */
 function mcf_posts_query_callback(){
 
-    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $paged      = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $category   = isset($_GET['category']) ? $_GET['category'] : '';
 
-    $query = new WP_Query( array(  
+    $args = array(  
         'post_type'      => 'post',
         'posts_per_page' => 9, 
         'paged'          => $paged,        
@@ -432,7 +454,13 @@ function mcf_posts_query_callback(){
         //     'menu_order'=>'ASC',
         // )
         'order'          => 'ASC',
-    ));
+    );
+
+    if (!empty($category)) {
+        $args['category_name'] = $category;
+    }
+
+    $query = new WP_Query($args);
 
     return $query;
 }

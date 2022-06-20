@@ -49,12 +49,33 @@ const MCF_FILTERS = {
 
             MCF_FILTERS.blockUI('.ormwc-wrapper', 'start');
             $('.filter-form-js input[name="mcf_current_page"]').val(1);
+
+            const post_type = $('input[name="mcf_post_type"]').val();
+            var url = new URL(window.location);
+            var filter_val = $('.filter-form-js select').val();
+
+            if (post_type == 'events') {
+                url.searchParams.set('event_type', filter_val);
+            }else{
+                url.searchParams.set('category', filter_val);
+            }
+            // console.log('stathe', filter_val);
+            if (MCF_FILTERS.isEmpty(filter_val)) {
+                url.searchParams.delete('category');             
+                url.searchParams.delete('event_type');             
+            }
+            
+            // url = new URL(window.location);
+
+
             var data = jQuery(this).serialize();
 
             jQuery.post(mcf_vars.ajax_url, data, function(resp) {
                 console.log(resp);  
                 if (resp.status == "success") {
                    jQuery('.wpposts-wrapper').html(resp.html);
+
+                    window.history.pushState({}, '', url);                                            
                 }
                 
                 MCF_FILTERS.blockUI('.ormwc-wrapper', 'end');              
@@ -82,6 +103,15 @@ const MCF_FILTERS = {
                 }
             }, 'json');
         });
+    },
+
+    isEmpty: function(str) {
+        // console.log('str.length', str.length);
+        return (!str || str.length === 0 || str.length == '0' );
+    },
+
+    isBlank: function(str) {
+        return (!str || /^\s*$/.test(str));
     },
 
     blockUI: function(selector, type){
