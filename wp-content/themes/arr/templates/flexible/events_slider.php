@@ -40,6 +40,16 @@ $query = new WP_Query( array(
                 'meta_key'  => 'date',
                 'orderby'   => 'meta_value_num',
                 'order'     => 'ASC',
+                'meta_query'     => array(
+                    array(
+                        array(
+                          'key' => 'date',
+                          'compare' => '>=',
+                          'value'   => date("Y-m-d"),
+                          'type'    => 'DATE'
+                        ),
+                    ),
+                )
             ));
 
 while ( $query->have_posts() ) : $query->the_post(); ?>
