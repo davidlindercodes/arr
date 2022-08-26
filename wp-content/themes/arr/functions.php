@@ -318,7 +318,7 @@ function mcf_posts_filter_callback(){
         'posts_per_page' => 9, 
         'paged'          => $paged,
         'orderby'        => 'date', 
-        'order'          => 'ASC',
+        'order'          => 'DESC',
     );
 
     if (!empty($start_date) && !empty($end_date)) {            
@@ -416,7 +416,6 @@ function mcf_events_query_callback(){
  * Events pagination args callback
 */
 function mcf_pagination_args($query, $paged){
-
     $args = array(
         'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
         'total'        => $query->max_num_pages,
@@ -432,7 +431,6 @@ function mcf_pagination_args($query, $paged){
         'add_args'     => false,
         'add_fragment' => '',
     );
-
     return $args;
 }
 
@@ -449,11 +447,7 @@ function mcf_posts_query_callback(){
         'posts_per_page' => 9, 
         'paged'          => $paged,        
         'orderby'        => 'date',
-        // 'orderby'   => array(
-        //     'date' =>'DESC',
-        //     'menu_order'=>'ASC',
-        // )
-        'order'          => 'ASC',
+        'order'          => 'DESC',
     );
 
     if (!empty($category)) {

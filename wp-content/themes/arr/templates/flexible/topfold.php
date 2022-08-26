@@ -1,4 +1,3 @@
-
     <?php if (get_sub_field('topfold_image')['url']): ?>
         <section class="relative <?php if (get_sub_field('hide_on_mobile')): ?> hidden sm:block <?php endif ?> ">
             <div class="w-full"> 

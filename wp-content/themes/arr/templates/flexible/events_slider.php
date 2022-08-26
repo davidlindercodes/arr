@@ -4,12 +4,15 @@
     <p class="text-center"> See you there. </p>
     <div class="splide splide2 text-center" 
           data-splide='{
-              "type":"slide",
+              "type":"loop",
               "perPage": 5,
               "lazyLoad":"nearby",
               "autoplay":0,
               "arrows":0,
+              "perMove":1,
               "pagination":0,
+              "flickPower": 100,
+              "flickMaxPages": 1,
                 "breakpoints": {
                         "1280": {
                             "perPage": 4

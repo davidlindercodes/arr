@@ -52,9 +52,16 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
                 <div class="form-group event-type mb-2 mx-sm-3">
                     <label>Category:</label>
                     <select class="filter-input" name="post_cat">
-                        <option value="">All</option>
-                        <?php foreach ($categories as $category): ?>                    
-                            <option <?php selected($category_slug, $category->slug, true); ?> value="<?php echo esc_attr($category->slug); ?>"><?php echo $category->name; ?></option>
+                        <option value="blog"> All </option>
+                        <?php foreach ($categories as $category): ?>
+                            <!-- // Remove archive from options and remove master option -->
+                            <?php if ($category->slug != 'archive' && $category->slug != 'blog') : ?>                  
+                                <option 
+                                    <?php selected($category_slug, $category->slug, true); ?> 
+                                    value="<?php echo esc_attr($category->slug); ?>">
+                                    <?php echo $category->name; ?>
+                                </option>
+                            <?php endif; ?> 
                         <?php endforeach ?>
                     </select>
                 </div>

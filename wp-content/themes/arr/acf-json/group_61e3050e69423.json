@@ -182,6 +182,25 @@
                             "prepend": "",
                             "append": "",
                             "maxlength": ""
+                        },
+                        {
+                            "key": "field_63094c8eb6711",
+                            "label": "section-id",
+                            "name": "section identifier",
+                            "type": "text",
+                            "instructions": "Use this identifier if you want to link directly to this section, otherwise you can leave it blank",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         }
                     ],
                     "min": "",
@@ -552,6 +571,25 @@
                                     "maxlength": ""
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_63094d2eb6712",
+                            "label": "section-id",
+                            "name": "section identifier",
+                            "type": "text",
+                            "instructions": "Use this identifier if you want to link directly to this section, otherwise you can leave it blank",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         }
                     ],
                     "min": "",
@@ -596,5 +634,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1651268756
+    "modified": 1661554004
 }
