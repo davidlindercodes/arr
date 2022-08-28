@@ -17,13 +17,13 @@ function burgermenu() {
     <?php get_template_part('templates/head'); ?>
     <body <?php body_class(); ?>>
     <header>
-        <div class="flex items-center justify-between">
-        <a href="/" class="headerlogo"> 
+        <div class="flex lg:block items-center justify-between header-margin">
+        <a href="/" class="headerlogo lg:justify-center"> 
             <img class="placeholder" src="<?php echo get_field('header_logo', 'option')['url']; ?>"  />
             Accrington Road Runners
         </a>
             <div class="flex flex-col lg:w-full lg:justify-between">
-                <div class="hidden lg:flex justify-end content-center text-base xl:text-lg uppercase" style="letter-spacing: 1.06px;">
+                <div class="hidden lg:flex justify-center content-center text-base xl:text-lg uppercase" style="letter-spacing: 1.06px;">
                     <?php wp_nav_menu( array( 'theme_location' => 'main-nav' ) ); ?>
                 </div>
                 <div class="block lg:hidden">

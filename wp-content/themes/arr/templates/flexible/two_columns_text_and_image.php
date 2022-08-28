@@ -1,5 +1,5 @@
 <?php if ( get_sub_field('image')): ?> 
-    <section class="mx-auto mainContent smallerSectionPadding" <?php if ( the_sub_field('background-yellow')) : ?>style="background-color: #EBFF00;" <?php endif; ?>>
+    <section <?php if(get_sub_field("section-id")) : ?> id="<?php the_sub_field('section-id'); ?>" <?php endif; ?> class="mx-auto mainContent smallerSectionPadding" <?php if ( get_sub_field('background-yellow')) : ?>style="background-color: #EBFF00;" <?php endif; ?>>
         <div class="relative w-full mx-auto justify-center"> 
             <div class="<?php if ( !get_sub_field('full_width_image')) : ?> container <?php endif ?> two-col justify-center" >
                 <div class="<?php if ( !get_sub_field('full_width_image')) : ?> mr-20 w-full<?php endif ?>
@@ -9,7 +9,9 @@
                 </div>
                 <div class="mb-auto  <?php if ( get_sub_field('full_width_image')) : ?>containerSM<?php else : ?> w-full <?php endif ?> <?php if ( get_sub_field('position')=='right') : ?> order-1 left-col pr-10 <?php else : ?> right-col <?php endif ?>">
                     <div class="two-col-text">    
-                        <h2 class="text-center lg:text-left lg:mt-0 mt-6 lg:mt-0 tracking-wide uppercase mx-auto lg:mx-0 font-bold text-black"> <?php the_sub_field('title'); ?></h2>
+                        <h2 class="text-center lg:text-left lg:mt-0 mt-6 lg:mt-0 tracking-wide uppercase mx-auto lg:mx-0 font-bold text-black"> 
+                           <?php the_sub_field('title'); ?>
+                        </h2>
                         <div class=" mb-0 text-center lg:text-left"> <?php the_sub_field('text'); ?></div>
                             <?php if (get_sub_field('button_text')):  ?>
                                 <div class="text-center lg:text-left mt-auto">
@@ -26,7 +28,7 @@
         </div>
     </section>
 <?php else: ?>
-    <section class="mx-auto mainContent smallerSectionPadding" <?php if ( the_sub_field('background-yellow')) : ?>style="background-color: #EBFF00;" <?php endif; ?>>
+    <section <?php if(get_sub_field("section-id")) : ?> id="<?php get_sub_field('section-id'); ?>" <?php endif; ?> class="mx-auto mainContent smallerSectionPadding" <?php if ( the_sub_field('background-yellow')) : ?>style="background-color: #EBFF00;" <?php endif; ?>>
         <div class="relative w-full mx-auto justify-center"> 
             <div class="<?php if ( !get_sub_field('full_width_image')) : ?> container <?php endif ?> justify-center" >
                 <div class="mb-auto w-full order-1"> 

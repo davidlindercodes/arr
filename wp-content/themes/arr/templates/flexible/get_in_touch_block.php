@@ -27,6 +27,6 @@
 <div id="modal" class="hidden fixed">
     <div id="modal-box" style="height: 90vh;  z-index: 9999; top: 50%; left: 50%; transform: translate(-50%, -50%); overflow: auto;" class="bg-white p-10 fixed w-4xl">
     <img class="ml-auto cursor-pointer" onclick="showHideModal()" src="/wp-content/themes/arr/src/img/icons/black-x.svg">
-        <?= do_shortcode('[ninja_form id=6]'); ?>
+        <?= do_shortcode('[forminator_form id="4106"]'); ?>
     </div>
 </div>

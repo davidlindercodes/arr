@@ -31,6 +31,10 @@
               "perPage":4,
               "lazyLoad":"nearby",
               "arrows":0,
+              "perMove":1,
+              "flickPower": 100,
+              "flickMaxPages": 1,
+
                 "breakpoints": {
                         "1024": {
                             "perPage": 3
