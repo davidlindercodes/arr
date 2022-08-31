@@ -57,9 +57,16 @@
                             </div>
                         <?php endif ; ?>
                         <p class="author"> By <?php echo get_the_author_nickname() ?> <span class="date">  <?php the_date(); ?> </span> </p>
-                        <p class="title"> <?php print the_title(); ?> </p>
+                        <p class="title"> 
+                            <?php print the_title(); ?> 
+                        </p>
+
+                        $out = strlen($in) > 50 ? substr($in,0,50)."..." : $in;
+
                         <?php if (get_field('short_description')): ?>
-                            <p class="short"> <?php the_field('short_description') ?> </p>
+                            <p class="short"> 
+                                <?php the_field('short_description') ?> 
+                            </p>
                         <?php endif; ?>
                         </a>
                     </li>

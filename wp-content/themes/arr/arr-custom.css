@@ -1166,6 +1166,7 @@ a.blue-link-solid:active {
   background: linear-gradient(180deg, #fff105 0%, #fff105 90%, rgba(255, 241, 5, 0) 100%);
   height: 400px;
   padding-top: 150px;
+  margin-top: -15px;
 }
 .event-top-fold h1 {
   text-align: center;
@@ -1223,7 +1224,7 @@ h2.event {
 
 @media (min-width: 1024px) {
   .header-margin {
-    margin-top: 17px;
+    margin-top: 0px;
   }
 }
 
@@ -1381,7 +1382,7 @@ header {
 }
 
 .topfoldDesktop {
-  margin-top: 46px;
+  margin-top: -10px;
 }
 
 .splide2 .splide__pagination {
@@ -1435,7 +1436,7 @@ header {
   background: white;
 }
 .single.single-post main {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 .single.single-post h1 {
   font-size: 32px;
@@ -1553,7 +1554,7 @@ header {
   font-weight: 600;
   width: 100%;
   display: flex;
-  margin-top: 4px;
+  padding-top: 10px;
 }
 .headerlogo img {
   height: 50px;
@@ -1777,4 +1778,14 @@ span.page-numbers.current {
 
 .forminator-button:active {
   transform: scale(0.97);
+}
+
+.filers-wrapper {
+  padding: 20px;
+}
+
+@media (max-width: 640px) {
+  .form-group.date, .form-group.event-type {
+    width: 100%;
+  }
 }

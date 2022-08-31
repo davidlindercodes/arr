@@ -16,10 +16,10 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
+            "placeholder": "this is the preview text for the blog post",
             "prepend": "",
             "append": "",
-            "maxlength": ""
+            "maxlength": 150
         },
         {
             "key": "field_622c8879644ca",
@@ -85,5 +85,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1647108991
+    "modified": 1661976614
 }

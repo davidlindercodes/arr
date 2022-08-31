@@ -7,6 +7,14 @@
     <?php endif; ?>
     <?php the_content(); ?>
 
+<?php if (get_field('results')) : ?>
+    <h2 class="my-20"> Results </h2>
+    <div id="results" class="mb-20">
+        <?php the_field('results') ?> 
+    </div> 
+<?php endif; ?> 
+
+
 <?php $images = get_field('gallary'); if($images): ?>
     <h2 class="my-20"> Gallery </h2>
     <div id="gallery" class="mb-20">
@@ -15,6 +23,7 @@
         <?php endforeach; ?>
     </div>
 <?php endif; ?>
+
 
 </div>
 

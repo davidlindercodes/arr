@@ -25,7 +25,7 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 <section id="featured-events" class="mainContent smallerSectionPadding bg-white topfoldDesktop">
     <div class="sm-container mx-auto">
-        <h1 class="text-center sm:mt-2 blue" > Club Blog </h1> 
+        <h1 class="text-center sm:mt-2 blue" > Club News </h1> 
         <p class="text-center px-10"> Keep up to date with the latest club news, photos and results... </p>
         
         <!-- filters wrapper start  -->
@@ -39,15 +39,20 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
                         <strong>Filter By Date:</strong>
                     </span>                    
                 </div>
-                <div class="form-group mb-2 mx-sm-3">
+                <div class="form-group date mb-2 mx-sm-3">
                     <div class="filter-by-date">
                         <label>Start Date</label>
                         <input type="date" class="filter-input" name="start_date">
                     </div>
                 </div>
-                <div class="form-group mb-2 mx-sm-3">   
+                <div class="form-group date mb-2 mx-sm-3">   
                     <label>End Date</label>
                     <input type="date" class="filter-input" name="end_date">
+                </div>
+                <div class="form-group mt-5">                    
+                    <span>
+                        <strong>Filter By Category:</strong>
+                    </span>                    
                 </div>
                 <div class="form-group event-type mb-2 mx-sm-3">
                     <label>Category:</label>

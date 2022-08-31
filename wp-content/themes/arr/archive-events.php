@@ -34,15 +34,20 @@ $event_type = isset($_GET['event_type']) ? $_GET['event_type'] : '';
                         <strong>Filter By Date:</strong>
                     </span>                    
                 </div>
-                <div class="form-group mb-2 mx-sm-3">
+                <div class="form-group date mb-2 mx-sm-3">
                     <div class="filter-by-date">
                         <label>Start Date</label>
                         <input type="date" class="filter-input" name="start_date">
                     </div>
                 </div>
-                <div class="form-group mb-2 mx-sm-3">   
+                <div class="form-group date mb-2 mx-sm-3">   
                     <label>End Date</label>
                     <input type="date" class="filter-input" name="end_date">
+                </div>
+                <div class="form-group event label mt-5">                    
+                    <span>
+                        <strong>Filter By Event Type:</strong>
+                    </span>                    
                 </div>
                 <div class="form-group event-type mb-2 mx-sm-3">
                     <label>Event Type:</label>

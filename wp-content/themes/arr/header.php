@@ -16,7 +16,7 @@ function burgermenu() {
 
     <?php get_template_part('templates/head'); ?>
     <body <?php body_class(); ?>>
-    <header>
+    <header class="relative"> 
         <div class="flex lg:block items-center justify-between header-margin">
         <a href="/" class="headerlogo lg:justify-center"> 
             <img class="placeholder" src="<?php echo get_field('header_logo', 'option')['url']; ?>"  />
